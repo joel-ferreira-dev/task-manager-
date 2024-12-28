@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { View, FlatList, StyleSheet, Text } from "react-native";
 import { TaskContext } from "../context/TaskContext";
+import { CustomButton } from "../components/CustomButton";
+import { FeedbackMessage } from "../components/FeedbackMessage";
+import { TaskCard } from "../components/TaskCard";
 
 export default function TaskListScreen({ navigation }: { navigation: any }) {
   const { tasks, toggleTaskStatus, clearCompleted } = useContext(TaskContext)!;
@@ -20,31 +23,37 @@ export default function TaskListScreen({ navigation }: { navigation: any }) {
       <Text style={styles.title}>Minhas Tarefas</Text>
 
       {tasks.length === 0 ? (
-        <Text style={styles.emptyMessage}>Nenhuma tarefa encontrada. Adicione uma nova tarefa!</Text>
+        <FeedbackMessage
+          message="Nenhuma tarefa encontrada. Adicione uma nova tarefa!"
+          color="#888"
+        />
       ) : (
         <FlatList
           data={tasks}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity
+            <TaskCard
+              title={item.title}
+              completed={item.completed}
               onPress={() => toggleTaskStatus(item.id)}
-              style={[styles.taskCard, item.completed ? styles.taskCompleted : styles.taskPending]}
-            >
-              <Text style={styles.taskText}>{item.title}</Text>
-            </TouchableOpacity>
+            />
           )}
           contentContainerStyle={styles.taskList}
         />
       )}
 
-      {message && <Text style={styles.feedbackMessage}>{message}</Text>}
+      <FeedbackMessage message={message || ""} />
 
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate("AddTask")}>
-        <Text style={styles.buttonText}>ADICIONAR TAREFA</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.clearButton} onPress={handleClearCompleted}>
-        <Text style={styles.buttonText}>LIMPAR CONCLUÍDAS</Text>
-      </TouchableOpacity>
+      <CustomButton
+        title="ADICIONAR TAREFA"
+        onPress={() => navigation.navigate("AddTask")}
+        backgroundColor="#4CAF50"
+      />
+      <CustomButton
+        title="LIMPAR CONCLUÍDAS"
+        onPress={handleClearCompleted}
+        backgroundColor="#F44336"
+      />
     </View>
   );
 }
@@ -64,60 +73,5 @@ const styles = StyleSheet.create({
   },
   taskList: {
     paddingBottom: 20,
-  },
-  taskCard: {
-    padding: 15,
-    marginVertical: 8,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 2,
-    backgroundColor: "#FFF",
-  },
-  taskCompleted: {
-    borderColor: "#4CAF50",
-    borderWidth: 2,
-  },
-  taskPending: {
-    borderColor: "#FFC107",
-    borderWidth: 2,
-  },
-  taskText: {
-    fontSize: 16,
-    color: "#333",
-  },
-  addButton: {
-    backgroundColor: "#4CAF50",
-    padding: 15,
-    borderRadius: 5,
-    alignItems: "center",
-    marginVertical: 5,
-  },
-  clearButton: {
-    backgroundColor: "#F44336",
-    padding: 15,
-    borderRadius: 5,
-    alignItems: "center",
-    marginVertical: 5,
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  emptyMessage: {
-    fontSize: 16,
-    color: "#888",
-    textAlign: "center",
-    marginVertical: 20,
-  },
-  feedbackMessage: {
-    fontSize: 14,
-    color: "#4CAF50",
-    textAlign: "center",
-    marginBottom: 10,
-    fontWeight: "bold",
   },
 });
