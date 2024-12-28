@@ -6,7 +6,7 @@ export default function RootLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Gerenciador De Tarefas",
+          headerShown: false, // Esconde o header nativo
         }}
       />
     </Stack>
