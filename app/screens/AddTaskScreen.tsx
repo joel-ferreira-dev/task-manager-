@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 import { TaskContext } from "../context/TaskContext";
+import { CustomButton } from "../components/CustomButton";
+import { FeedbackMessage } from "../components/FeedbackMessage";
 
 export default function AddTaskScreen({ navigation }: { navigation: any }) {
   const { tasks, addTask } = useContext(TaskContext)!;
@@ -12,7 +14,9 @@ export default function AddTaskScreen({ navigation }: { navigation: any }) {
       setFeedbackMessage("O título da tarefa não pode estar vazio.");
       return;
     }
-    if (tasks.some((task) => task.title.toLowerCase() === title.toLowerCase())) {
+    if (
+      tasks.some((task) => task.title.toLowerCase() === title.toLowerCase())
+    ) {
       setFeedbackMessage("Já existe uma tarefa com esse título.");
       return;
     }
@@ -23,7 +27,7 @@ export default function AddTaskScreen({ navigation }: { navigation: any }) {
     setTimeout(() => {
       setFeedbackMessage(null);
       navigation.goBack();
-    }, 1000); // Aguarda 1 segundo antes de voltar
+    }, 1000);
   };
 
   return (
@@ -36,10 +40,12 @@ export default function AddTaskScreen({ navigation }: { navigation: any }) {
         value={title}
         onChangeText={setTitle}
       />
-      {feedbackMessage && <Text style={styles.feedbackMessage}>{feedbackMessage}</Text>}
-      <TouchableOpacity style={styles.addButton} onPress={handleAddTask}>
-        <Text style={styles.buttonText}>ADICIONAR</Text>
-      </TouchableOpacity>
+      <FeedbackMessage message={feedbackMessage || ""} />
+      <CustomButton
+        title="ADICIONAR"
+        onPress={handleAddTask}
+        backgroundColor="#4CAF50"
+      />
     </View>
   );
 }
@@ -68,24 +74,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     fontSize: 16,
     marginBottom: 20,
-  },
-  feedbackMessage: {
-    fontSize: 14,
-    color: "#4CAF50", // Verde para mensagens de sucesso
-    textAlign: "center",
-    marginBottom: 10,
-    fontWeight: "bold",
-  },
-  addButton: {
-    backgroundColor: "#4CAF50",
-    padding: 15,
-    borderRadius: 5,
-    alignItems: "center",
-    width: "100%",
-  },
-  buttonText: {
-    color: "#FFF",
-    fontSize: 16,
-    fontWeight: "bold",
   },
 });
