@@ -14,7 +14,9 @@ interface TaskContextData {
   clearCompleted: () => void;
 }
 
-export const TaskContext = createContext<TaskContextData | undefined>(undefined);
+export const TaskContext = createContext<TaskContextData | undefined>(
+  undefined
+);
 
 interface TaskProviderProps {
   children: ReactNode;
@@ -53,7 +55,9 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   };
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask, toggleTaskStatus, clearCompleted }}>
+    <TaskContext.Provider
+      value={{ tasks, addTask, toggleTaskStatus, clearCompleted }}
+    >
       {children}
     </TaskContext.Provider>
   );
