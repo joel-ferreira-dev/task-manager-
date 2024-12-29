@@ -29,7 +29,7 @@ Este projeto exemplifica o uso de **React Native** com **Context API** para gere
 
 ## Link do Repositório
 
-[Repositório no GitHub](https://github.com/SEU-USUARIO/gerenciador-de-tarefas)
+[Repositório no GitHub](https://github.com/joel-ferreira-dev/task-manager-)
 
 Substitua `SEU-USUARIO` pelo seu nome de usuário e `gerenciador-de-tarefas` pelo nome do seu repositório.
 
