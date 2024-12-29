@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#4A90E2"/>
+  
+  <!-- Checklist Card -->
+  <rect x="212" y="212" width="600" height="600" rx="40" fill="white"/>
+  
+  <!-- Task Lines and Checkmarks -->
+  <!-- Task 1 -->
+  <rect x="262" y="312" width="400" height="12" rx="6" fill="#E8E8E8"/>
+  <circle cx="762" cy="318" r="20" fill="#2ECC71"/>
+  <path d="M752 318 L760 326 L772 310" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Task 2 -->
+  <rect x="262" y="412" width="500" height="12" rx="6" fill="#E8E8E8"/>
+  <circle cx="762" cy="418" r="20" fill="#2ECC71"/>
+  <path d="M752 418 L760 426 L772 410" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Task 3 -->
+  <rect x="262" y="512" width="450" height="12" rx="6" fill="#E8E8E8"/>
+  <circle cx="762" cy="518" r="20" stroke="#E8E8E8" stroke-width="4" fill="white"/>
+  
+  <!-- Task 4 -->
+  <rect x="262" y="612" width="350" height="12" rx="6" fill="#E8E8E8"/>
+  <circle cx="762" cy="618" r="20" stroke="#E8E8E8" stroke-width="4" fill="white"/>
+</svg>
